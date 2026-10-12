@@ -376,6 +376,19 @@
   </div>
 
   <!-- DASHBOARD -->
+  <div style="text-align:right; margin-bottom:10px;">
+    <button class="btn" onclick="toggleEditHtml()">✏️ Editar HTML</button>
+  </div>
+
+  <div id="htmlEditorContainer" style="display:none; margin-bottom:20px; background:#1a1a1a; padding:15px; border-radius:10px; border:1px solid #444;">
+    <div style="display:flex; gap:10px; margin-bottom:10px; flex-wrap:wrap;">
+      <button class="btn btn-export" onclick="saveHtmlEdit()">💾 Guardar y Aplicar</button>
+      <button class="btn" onclick="cancelHtmlEdit()">Cancelar</button>
+      <span style="color:#aaa; font-size:13px; margin-left:auto;">Edita el HTML de la página. Usa con cuidado.</span>
+    </div>
+    <textarea id="htmlEditor" spellcheck="false" style="width:100%; height:400px; font-family:monospace; font-size:12px; background:#111; color:#0f0; border:1px solid #333; padding:10px; border-radius:6px;"></textarea>
+  </div>
+
   <div class="section active" id="tab-dashboard">
     <div class="card">
       <h2>🏠 Panel de Control</h2>
@@ -1136,6 +1149,34 @@ renderPrecios();
 renderDashboard();
 actualizarAlertas();
 setInterval(actualizarAlertas, 60000); // Cada minuto verifica alertas
+
+let _originalHtml = '';
+function toggleEditHtml(){
+  const c = document.getElementById('htmlEditorContainer');
+  if (c.style.display === 'none'){
+    _originalHtml = document.documentElement.outerHTML;
+    document.getElementById('htmlEditor').value = _originalHtml;
+    c.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    c.style.display = 'none';
+  }
+}
+function cancelHtmlEdit(){
+  document.getElementById('htmlEditorContainer').style.display = 'none';
+}
+function saveHtmlEdit(){
+  const newHtml = document.getElementById('htmlEditor').value;
+  try {
+    if (!confirm('¿Guardar y reemplazar el HTML actual de la página? Esto modifica el DOM localmente (solo en este navegador). ¿Continuar?')) return;
+    document.open();
+    document.write(newHtml);
+    document.close();
+    alert('HTML aplicado. Si algo falla, recarga la página sin guardar.');
+  } catch(err){
+    alert('Error al aplicar HTML: ' + err.message);
+  }
+}
 </script>
 <script>
 if ('serviceWorker' in navigator) {
