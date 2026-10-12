@@ -373,21 +373,21 @@
     <button class="tab" onclick="showTab('nueva', this)"><span class="tab-icon">🆕</span> Nueva Venta</button>
     <button class="tab" onclick="showTab('historial', this)"><span class="tab-icon">📋</span> Historial</button>
     <button class="tab" onclick="showTab('estadisticas', this)"><span class="tab-icon">📊</span> Estadísticas</button>
-  </div>
+
 
   <!-- DASHBOARD -->
   <div style="text-align:right; margin-bottom:10px;">
-    <button class="btn" onclick="toggleEditHtml()">✏️ Editar HTML</button>
-  </div>
 
-  <div id="htmlEditorContainer" style="display:none; margin-bottom:20px; background:#1a1a1a; padding:15px; border-radius:10px; border:1px solid #444;">
+
+
+
     <div style="display:flex; gap:10px; margin-bottom:10px; flex-wrap:wrap;">
-      <button class="btn btn-export" onclick="saveHtmlEdit()">💾 Guardar y Aplicar</button>
-      <button class="btn" onclick="cancelHtmlEdit()">Cancelar</button>
-      <span style="color:#aaa; font-size:13px; margin-left:auto;">Edita el HTML de la página. Usa con cuidado.</span>
-    </div>
-    <textarea id="htmlEditor" spellcheck="false" style="width:100%; height:400px; font-family:monospace; font-size:12px; background:#111; color:#0f0; border:1px solid #333; padding:10px; border-radius:6px;"></textarea>
-  </div>
+
+
+
+  
+
+
 
   <div class="section active" id="tab-dashboard">
     <div class="card">
@@ -395,8 +395,8 @@
       <div class="dashboard-grid" id="dashboardStats"></div>
       <h3 style="color:#FFD700; margin-top:30px;">⏰ Próximos Vencimientos (7 días)</h3>
       <div id="proximosVencimientos"></div>
-    </div>
-  </div>
+  
+
 
   <!-- VENCIMIENTOS -->
   <div class="section" id="tab-vencimientos">
@@ -410,10 +410,10 @@
           <option value="pronto">🟡 Próximos (7 días)</option>
           <option value="ok">🟢 Vigentes</option>
         </select>
-      </div>
+    
       <div id="vencimientosList"></div>
-    </div>
-  </div>
+  
+
 
   <!-- PRECIOS -->
   <div class="section" id="tab-precios">
@@ -423,8 +423,8 @@
       <div style="text-align: center; margin-top: 20px;">
         <button class="btn" onclick="guardarPrecios()">💾 Guardar Precios</button>
         <button class="btn btn-success" onclick="agregarPlan()">➕ Agregar Plan TV</button>
-      </div>
-    </div>
+    
+  
 
     <div class="card">
       <h2>🌐 Precios AllDebrid y 📺 Trakt TV</h2>
@@ -435,20 +435,20 @@
           <div class="field"><label>💵 3 Meses (€)</label><input type="number" id="ad-p3" value="12"></div>
           <div class="field"><label>💵 6 Meses (€)</label><input type="number" id="ad-p6" value="22"></div>
           <div class="field"><label>💵 1 Año (€)</label><input type="number" id="ad-p12" value="40"></div>
-        </div>
+      
         <div class="price-card color-3">
           <h3>📺 TRAKT TV</h3>
           <div class="field"><label>💵 1 Mes (€)</label><input type="number" id="tr-p1" value="3"></div>
           <div class="field"><label>💵 3 Meses (€)</label><input type="number" id="tr-p3" value="8"></div>
           <div class="field"><label>💵 1 Año (€)</label><input type="number" id="tr-p12" value="25"></div>
           <div class="field"><label>💵 2 Años (€)</label><input type="number" id="tr-p24" value="45"></div>
-        </div>
-      </div>
+      
+    
       <div style="text-align: center; margin-top: 20px;">
         <button class="btn" onclick="guardarPreciosExtras()">💾 Guardar Precios Extras</button>
-      </div>
-    </div>
-  </div>
+    
+  
+
 
   <!-- NUEVA VENTA -->
   <div class="section" id="tab-nueva">
@@ -469,18 +469,18 @@
               <div class="service-icon">🎬</div>
               <div class="service-name">KikoKrypto TV</div>
               <div class="service-desc">Cine, Series, Fútbol</div>
-            </div>
+          
             <div class="service-option" id="opt-alldebrid" onclick="toggleService('alldebrid')">
               <div class="service-icon">🌐</div>
               <div class="service-name">AllDebrid</div>
               <div class="service-desc">Descargas Premium</div>
-            </div>
+          
             <div class="service-option" id="opt-trakt" onclick="toggleService('trakt')">
               <div class="service-icon">📺</div>
               <div class="service-name">Trakt TV</div>
               <div class="service-desc">Tracker series/películas</div>
-            </div>
-          </div>
+          
+        
 
           <div class="service-prices" id="prices-kiko">
             <h4 style="color:#FFD700; margin:10px 0;">🎬 KikoKrypto TV</h4>
@@ -491,8 +491,8 @@
                 <option value="12">1 Año</option>
                 <option value="24">2 Años</option>
               </select>
-            </div>
-          </div>
+          
+        
 
           <div class="service-prices" id="prices-alldebrid">
             <h4 style="color:#ff6b35; margin:10px 0;">🌐 AllDebrid</h4>
@@ -503,8 +503,8 @@
                 <option value="6">6 Meses</option>
                 <option value="12">1 Año</option>
               </select>
-            </div>
-          </div>
+          
+        
 
           <div class="service-prices" id="prices-trakt">
             <h4 style="color:#ED1C24; margin:10px 0;">📺 Trakt TV</h4>
@@ -515,17 +515,17 @@
                 <option value="12">1 Año</option>
                 <option value="24">2 Años</option>
               </select>
-            </div>
-          </div>
-        </div>
+          
+        
+      
 
         <div class="field full"><label>📝 Notas / Comentarios</label><textarea id="cli-notas" placeholder="Notas adicionales sobre el cliente..."></textarea></div>
-      </div>
+    
       <div style="text-align: center; margin-top: 20px;">
         <button class="btn btn-success" onclick="generarFactura()">📄 Generar Factura</button>
-      </div>
-    </div>
-  </div>
+    
+  
+
 
   <!-- HISTORIAL -->
   <div class="section" id="tab-historial">
@@ -533,28 +533,28 @@
       <h2>📋 Historial Permanente de Ventas</h2>
       <div class="backup-info">
         💡 <b>Los datos se guardan permanentemente en tu navegador.</b> Recomendamos hacer <b>backup periódico</b> con el botón "Exportar JSON".
-      </div>
+    
       <div style="margin-bottom:15px;">
         <input id="buscarCliente" placeholder="🔍 Buscar cliente..." style="width:50%; padding:10px; border-radius:8px; border:1px solid #333; background:#1a1a1a; color:white;" oninput="renderHistorial()">
         <button class="btn btn-export" onclick="exportarExcel()">📊 Excel</button>
         <button class="btn btn-export" onclick="exportarJSON()">💾 Backup</button>
         <button class="btn" onclick="importarJSON()">📥 Importar</button>
         <input type="file" id="importFile" style="display:none;" accept=".json" onchange="cargarJSON(event)">
-      </div>
+    
       <table class="sales-table">
         <thead><tr><th>Cliente</th><th>Servicios</th><th>Vence</th><th>Total</th><th>Fecha</th><th>Estado</th><th>Acciones</th></tr></thead>
         <tbody id="historialBody"></tbody>
       </table>
-    </div>
-  </div>
+  
+
 
   <!-- ESTADÍSTICAS -->
   <div class="section" id="tab-estadisticas">
     <div class="card">
       <h2>📊 Estadísticas de Ventas</h2>
       <div id="statsContainer"></div>
-    </div>
-  </div>
+  
+
 </div>
 
 <!-- MODAL FACTURA -->
@@ -567,7 +567,7 @@
     <button class="btn" onclick="descargarImagen()">🖼️ Imagen</button>
       <button class="btn btn-success" id="btn-guardarVenta" onclick="if(ventaEditando){guardarCambiosVenta()}else{guardarVenta()}">💾 Guardar Venta</button>
       <button class="btn" id="btn-cancelarEdicion" onclick="cancelarEdicionVenta(); limpiarFormularioVenta(); showTab('historial', document.querySelectorAll('.tab')[4]);" style="display:none;">Cancelar edición</button>
-  </div>
+
   <div id="factura"></div>
 </div>
 
@@ -672,22 +672,22 @@ function renderVencimientos() {
           <b style="font-size:16px;">${i.venta.nombre}</b><br>
           <small>📞 ${i.venta.telefono}</small><br>
           <small style="color:#888;">${srvs}</small>
-        </div>
+      
         <div>
           <small style="color:#aaa;">Fecha venta:</small><br>
           <b>${i.venta.fecha}</b><br>
           <small style="color:#aaa;">Vence:</small><br>
           <b style="color:#FFD700;">${i.venc.toISOString().slice(0,10)}</b>
-        </div>
+      
         <div style="text-align:center;">
           <span class="estado-tag ${est.cls}">${est.txt}</span><br>
           <small style="color:#aaa; margin-top:5px; display:block;">${i.dias < 0 ? `Hace ${Math.abs(i.dias)} días` : `En ${i.dias} días`}</small>
-        </div>
+      
         <div>
           <button class="btn btn-whatsapp" onclick="recordarVencimiento(${i.venta.id})" style="padding:8px 12px; font-size:12px;">📤 Recordar</button>
           <button class="btn btn-renovar" onclick="renovarCliente(${i.venta.id})" style="padding:8px 12px; font-size:12px;">🔄 Renovar</button>
-        </div>
-      </div>`;
+      
+    `;
   }).join('');
 }
 
@@ -774,8 +774,8 @@ function renderDashboard() {
           <div>
             <button class="btn btn-whatsapp" onclick="recordarVencimiento(${i.venta.id})" style="padding:6px 10px; font-size:11px;">📤 Recordar</button>
             <button class="btn btn-renovar" onclick="renovarCliente(${i.venta.id})" style="padding:6px 10px; font-size:11px;">🔄 Renovar</button>
-          </div>
-        </div>`;
+        
+      `;
     }).join('');
   }
 }
@@ -797,12 +797,12 @@ function renderPrecios() {
             <option value="4" ${p.color==4?'selected':''}>🟢 Verde</option>
             <option value="5" ${p.color==5?'selected':''}>🟠 Naranja</option>
           </select>
-        </div>
+      
         <div class="field"><label>💵 Precio 1 Mes (€)</label><input type="number" value="${p.p1}" onchange="precios[${i}].p1=+this.value"></div>
         <div class="field"><label>💵 Precio 1 Año (€)</label><input type="number" value="${p.p12}" onchange="precios[${i}].p12=+this.value"></div>
         <div class="field"><label>💵 Precio 2 Años (€)</label><input type="number" value="${p.p24}" onchange="precios[${i}].p24=+this.value"></div>
         <button class="btn btn-danger" onclick="eliminarPlan(${i})" style="width:100%;">🗑️ Eliminar Plan</button>
-      </div>`;
+    `;
   });
   actualizarSelectPlanes();
 }
@@ -904,27 +904,27 @@ function generarFactura() {
     <div class="fact-logo-area">
       <div class="fact-logo-hex"><div class="fact-logo-title">KIKOKRYPTO</div><div class="fact-logo-sub">TU PLATAFORMA FAVORITA</div></div>
       <div class="fact-badge">✓ RECIBO #${Date.now().toString().slice(-6)}</div>
-    </div>
+  
     <div class="fact-features">
       <div class="fact-feature"><div class="icon-circle icon-tv">📺</div>CINE, SERIES,<br>NOVELAS Y MÁS</div>
       <div class="fact-feature"><div class="icon-circle icon-ball">⚽</div>FÚTBOL Y<br>DEPORTES</div>
       <div class="fact-feature"><div class="icon-circle icon-fire">🔥</div>TODO EN<br>UN SOLO COMBO</div>
       <div class="fact-feature"><div class="icon-circle icon-shield">🛡️</div>SEGURO<br>Y CONFIABLE</div>
       <div class="fact-feature"><div class="icon-circle icon-headset">🎧</div>SOPORTE<br>24/7</div>
-    </div>
+  
     <div class="fact-info">
       <div class="fact-info-box"><h4>👤 DATOS DEL CLIENTE</h4>
         <p><span>Nombre:</span> ${cli.nombre}</p>
         <p><span>📞 Tel:</span> ${cli.telefono}</p>
         ${cli.email ? `<p><span>📧 Email:</span> ${cli.email}</p>` : ''}
         ${cli.mac ? `<p><span>📡 Dispositivo:</span> ${cli.mac}</p>` : ''}
-      </div>
+    
       <div class="fact-info-box"><h4>📋 DATOS DE LA VENTA</h4>
         <p><span>📅 Fecha:</span> ${cli.fecha}</p>
         <p><span>🛒 Servicios:</span> ${serviciosVenta.length}</p>
         <p><span>✅ Estado:</span> ${cli.estado}</p>
-      </div>
-    </div>
+    
+  
     ${cardsHTML}
     <div class="fact-vencimiento">⏰ <b>VENCIMIENTO: ${venc}</b></div>
     <div class="fact-total"><div class="label">💰 TOTAL A PAGAR</div><div class="amount">${total}€</div></div>
@@ -932,7 +932,7 @@ function generarFactura() {
     <div class="fact-footer">
       <div class="fact-telegram"><span>✈️ TELEGRAM </span><b>@KikoKrypto</b></div>
       <div class="fact-footer-text">🎬 Plataforma de Televisión Premium · Soporte 24/7<br>¡Gracias por confiar en KikoKrypto!</div>
-    </div>`;
+  `;
   document.getElementById('modalFactura').classList.add('active');
 }
 
@@ -1102,11 +1102,11 @@ function verFactura(id) {
       <div class="fact-feature"><div class="icon-circle icon-fire">🔥</div>TODO EN<br>UN SOLO COMBO</div>
       <div class="fact-feature"><div class="icon-circle icon-shield">🛡️</div>SEGURO<br>Y CONFIABLE</div>
       <div class="fact-feature"><div class="icon-circle icon-headset">🎧</div>SOPORTE<br>24/7</div>
-    </div>
+  
     <div class="fact-info">
       <div class="fact-info-box"><h4>👤 CLIENTE</h4><p><span>Nombre:</span> ${v.nombre}</p><p><span>📞 Tel:</span> ${v.telefono}</p>${v.email?`<p><span>📧</span> ${v.email}</p>`:''}${v.mac?`<p><span>📡</span> ${v.mac}</p>`:''}</div>
       <div class="fact-info-box"><h4>📋 VENTA</h4><p><span>📅 Fecha:</span> ${v.fecha}</p><p><span>🛒 Servicios:</span> ${v.servicios.length}</p><p><span>✅ Estado:</span> ${v.estado}</p></div>
-    </div>
+  
     ${cardsHTML}
     <div class="fact-vencimiento">⏰ <b>VENCIMIENTO: ${venc}</b></div>
     <div class="fact-total"><div class="label">💰 TOTAL</div><div class="amount">${v.total}€</div></div>
@@ -1200,13 +1200,13 @@ function renderEstadisticas() {
       <div class="stat-card blue"><div class="stat-icon">📊</div><div class="stat-label">Ventas</div><div class="stat-value">${ventas.length}</div></div>
       <div class="stat-card purple"><div class="stat-icon">👥</div><div class="stat-label">Clientes</div><div class="stat-value">${new Set(ventas.map(v=>v.nombre)).size}</div></div>
       <div class="stat-card green"><div class="stat-icon">📈</div><div class="stat-label">Promedio</div><div class="stat-value">${Math.round(total/ventas.length)}€</div></div>
-    </div>
+  
     <h3 style="color:#FFD700; margin-top:30px;">📊 Por Servicio:</h3>
     <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:15px; margin-top:15px;">
       <div class="stat-card gold"><h3>🎬 KikoKrypto TV</h3><div class="stat-value">${ingPorSrv.kiko}€</div><small>${venPorSrv.kiko} ventas</small></div>
       <div class="stat-card orange"><h3>🌐 AllDebrid</h3><div class="stat-value">${ingPorSrv.alldebrid}€</div><small>${venPorSrv.alldebrid} ventas</small></div>
       <div class="stat-card red"><h3>📺 Trakt TV</h3><div class="stat-value">${ingPorSrv.trakt}€</div><small>${venPorSrv.trakt} ventas</small></div>
-    </div>`;
+  `;
 }
 
 document.getElementById('cli-fecha').valueAsDate = new Date();
@@ -1215,33 +1215,6 @@ renderDashboard();
 actualizarAlertas();
 setInterval(actualizarAlertas, 60000); // Cada minuto verifica alertas
 
-let _originalHtml = '';
-function toggleEditHtml(){
-  const c = document.getElementById('htmlEditorContainer');
-  if (c.style.display === 'none'){
-    _originalHtml = document.documentElement.outerHTML;
-    document.getElementById('htmlEditor').value = _originalHtml;
-    c.style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  } else {
-    c.style.display = 'none';
-  }
-}
-function cancelHtmlEdit(){
-  document.getElementById('htmlEditorContainer').style.display = 'none';
-}
-function saveHtmlEdit(){
-  const newHtml = document.getElementById('htmlEditor').value;
-  try {
-    if (!confirm('¿Guardar y reemplazar el HTML actual de la página? Esto modifica el DOM localmente (solo en este navegador). ¿Continuar?')) return;
-    document.open();
-    document.write(newHtml);
-    document.close();
-    alert('HTML aplicado. Si algo falla, recarga la página sin guardar.');
-  } catch(err){
-    alert('Error al aplicar HTML: ' + err.message);
-  }
-}
 </script>
 <script>
 if ('serviceWorker' in navigator) {
