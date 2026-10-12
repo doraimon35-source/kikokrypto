@@ -565,7 +565,8 @@
     <button class="btn btn-email" onclick="enviarEmail()">📧 Email</button>
     <button class="btn btn-pdf" onclick="descargarPDF()">📄 PDF</button>
     <button class="btn" onclick="descargarImagen()">🖼️ Imagen</button>
-    <button class="btn btn-success" onclick="guardarVenta()">💾 Guardar Venta</button>
+      <button class="btn btn-success" id="btn-guardarVenta" onclick="if(ventaEditando){guardarCambiosVenta()}else{guardarVenta()}">💾 Guardar Venta</button>
+      <button class="btn" id="btn-cancelarEdicion" onclick="cancelarEdicionVenta(); limpiarFormularioVenta(); showTab('historial', document.querySelectorAll('.tab')[4]);" style="display:none;">Cancelar edición</button>
   </div>
   <div id="factura"></div>
 </div>
@@ -939,6 +940,8 @@ function cerrarFactura() {
   document.getElementById('modalFactura').classList.remove('active');
 }
 
+let ventaEditando = null;
+
 function guardarVenta() {
   if (!ventaActual) return;
   ventas.push({...ventaActual, id: Date.now()});
@@ -946,6 +949,67 @@ function guardarVenta() {
   actualizarAlertas();
   alert('✅ Venta guardada permanentemente');
   cerrarFactura();
+}
+
+function editarVenta(id) {
+  ventaEditando = ventas.find(v => v.id == id);
+  if (!ventaEditando) return;
+  document.getElementById('cli-nombre').value = ventaEditando.nombre || '';
+  document.getElementById('cli-telefono').value = ventaEditando.telefono || '';
+  document.getElementById('cli-email').value = ventaEditando.email || '';
+  document.getElementById('cli-fecha').value = ventaEditando.fecha || new Date().toISOString().slice(0,10);
+  document.getElementById('cli-mac').value = ventaEditando.mac || '';
+  document.getElementById('cli-notas').value = ventaEditando.notas || '';
+  document.getElementById('cli-total').value = ventaEditando.total || 0;
+  document.getElementById('cli-estado').value = ventaEditando.estado || 'Activo';
+  servicios = JSON.parse(JSON.stringify(ventaEditando.servicios || []));
+  renderServicios();
+  document.getElementById('btn-guardarVenta').textContent = '💾 Guardar Cambios';
+  document.getElementById('btn-cancelarEdicion').style.display = 'inline-block';
+  if (document.getElementById('btn-limpiarVenta')) document.getElementById('btn-limpiarVenta').style.display = 'none';
+  showTab('nueva', document.querySelectorAll('.tab')[3]);
+  alert('✏️ Editando: ' + ventaEditando.nombre + '. Haz cambios y pulsa "Guardar Cambios".');
+}
+
+function guardarCambiosVenta() {
+  if (!ventaEditando) return;
+  ventaEditando.nombre = document.getElementById('cli-nombre').value.trim();
+  ventaEditando.telefono = document.getElementById('cli-telefono').value.trim();
+  ventaEditando.email = document.getElementById('cli-email').value.trim();
+  ventaEditando.fecha = document.getElementById('cli-fecha').value;
+  ventaEditando.mac = document.getElementById('cli-mac').value.trim();
+  ventaEditando.notas = document.getElementById('cli-notas').value.trim();
+  ventaEditando.total = parseFloat(document.getElementById('cli-total').value) || 0;
+  ventaEditando.estado = document.getElementById('cli-estado').value;
+  ventaEditando.servicios = JSON.parse(JSON.stringify(servicios));
+  localStorage.setItem('kiko_ventas', JSON.stringify(ventas));
+  actualizarAlertas();
+  renderHistorial();
+  showTab('historial', document.querySelectorAll('.tab')[4]);
+  alert('✅ Cambios guardados');
+  cancelarEdicionVenta();
+}
+
+function cancelarEdicionVenta() {
+  ventaEditando = null;
+  document.getElementById('btn-guardarVenta').textContent = '💾 Guardar Venta';
+  if (document.getElementById('btn-cancelarEdicion')) document.getElementById('btn-cancelarEdicion').style.display = 'none';
+  if (document.getElementById('btn-limpiarVenta')) document.getElementById('btn-limpiarVenta').style.display = 'inline-block';
+}
+
+function limpiarFormularioVenta() {
+  ventaEditando = null;
+  document.getElementById('btn-guardarVenta').textContent = '💾 Guardar Venta';
+  document.getElementById('cli-nombre').value='';
+  document.getElementById('cli-telefono').value='';
+  document.getElementById('cli-email').value='';
+  document.getElementById('cli-fecha').valueAsDate = new Date();
+  document.getElementById('cli-mac').value='';
+  document.getElementById('cli-notas').value='';
+  document.getElementById('cli-total').value='0';
+  document.getElementById('cli-estado').value='Activo';
+  servicios=[];
+  renderServicios();
 }
 
 function enviarWhatsApp() {
@@ -1015,6 +1079,7 @@ function renderHistorial() {
         <button class="btn" onclick="verFactura(${v.id})" style="padding:5px 8px; font-size:11px;">👁️</button>
         <button class="btn btn-renovar" onclick="renovarCliente(${v.id})" style="padding:5px 8px; font-size:11px;">🔄</button>
         <button class="btn btn-danger" onclick="eliminarVenta(${v.id})" style="padding:5px 8px; font-size:11px;">🗑️</button>
+        <button class="btn" onclick="editarVenta(${v.id})" style="padding:5px 8px; font-size:11px;">✏️</button>
       </td>
     </tr>`;
   }).join('');
