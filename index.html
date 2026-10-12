@@ -1080,14 +1080,28 @@ function cargarJSON(e) {
   r.onload = (ev) => {
     try {
       const d = JSON.parse(ev.target.result);
-      if (confirm('¿Restaurar backup?')) {
-        if (d.ventas) { ventas = d.ventas; localStorage.setItem('kiko_ventas', JSON.stringify(ventas)); }
-        if (d.precios) { precios = d.precios; localStorage.setItem('kiko_precios', JSON.stringify(precios)); }
-        if (d.preciosExtras) { preciosExtras = d.preciosExtras; localStorage.setItem('kiko_extras', JSON.stringify(preciosExtras)); }
-        alert('✅ Backup restaurado');
-        renderHistorial(); renderPrecios(); actualizarAlertas();
+      const nuevos = Array.isArray(d.ventas) ? d.ventas : [];
+      const combinar = confirm(
+        '¿Cómo quieres importar?\n\n' +
+        'ACEPTAR = COMBINAR (conserva tus ventas actuales y AÑADE las del archivo)\n' +
+        'CANCELAR = REEMPLAZAR (borra las actuales y deja solo las del archivo)\n\n' +
+        'Ventas en el archivo: ' + nuevos.length + '  |  Ventas actuales: ' + ventas.length
+      );
+      if (combinar) {
+        const ids = new Set(ventas.map((v) => String(v.id)));
+        let anadidas = 0;
+        nuevos.forEach((v) => { const k = String(v.id); if (!ids.has(k)) { ventas.push(v); ids.add(k); anadidas++; } });
+        alert('✅ Combinado: ' + anadidas + ' ventas añadidas. Total: ' + ventas.length);
+      } else {
+        if (d.ventas) ventas = d.ventas;
+        alert('✅ Reemplazado. Total: ' + ventas.length + ' ventas');
       }
-    } catch(err) { alert('❌ Error'); }
+      localStorage.setItem('kiko_ventas', JSON.stringify(ventas));
+      if (d.precios) { precios = d.precios; localStorage.setItem('kiko_precios', JSON.stringify(precios)); }
+      if (d.preciosExtras) { preciosExtras = d.preciosExtras; localStorage.setItem('kiko_extras', JSON.stringify(preciosExtras)); }
+      renderHistorial(); renderPrecios(); actualizarAlertas();
+    } catch(err) { alert('❌ Error al importar: ' + err.message); }
+    e.target.value = '';
   };
   r.readAsText(f);
 }

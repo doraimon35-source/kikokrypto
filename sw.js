@@ -1,5 +1,5 @@
-/* KikoKrypto PWA - Service Worker v3 */
-const CACHE = 'kikokrypto-v3';
+/* KikoKrypto PWA - Service Worker v4 */
+const CACHE = 'kikokrypto-v4';
 const ASSETS = [
   './',
   './index.html',
