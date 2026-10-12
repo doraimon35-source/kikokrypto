@@ -1,5 +1,5 @@
-/* KikoKrypto PWA - Service Worker */
-const CACHE = 'kikokrypto-v2';
+/* KikoKrypto PWA - Service Worker v3 */
+const CACHE = 'kikokrypto-v3';
 const ASSETS = [
   './',
   './index.html',
@@ -32,10 +32,24 @@ self.addEventListener('fetch', (event) => {
   if (req.method !== 'GET') return;
 
   const url = new URL(req.url);
-
-  // Solo gestionar peticiones del propio origen (sería la URL de la PWA)
+  // Fuera del propio origen (ej. wa.me) → comportamiento normal del navegador
   if (url.origin !== self.location.origin) return;
 
+  if (req.mode === 'navigate') {
+    // Página HTML: SIEMPRE de red primero, caché solo como respaldo sin conexión
+    event.respondWith(
+      fetch(req)
+        .then((res) => {
+          const copy = res.clone();
+          caches.open(CACHE).then((cache) => cache.put(req, copy));
+          return res;
+        })
+        .catch(() => caches.match(req).then((c) => c || caches.match('./index.html')))
+    );
+    return;
+  }
+
+  // Recursos estáticos: caché primero, red como respaldo
   event.respondWith(
     caches.match(req).then((cached) => {
       return cached || fetch(req).then((res) => {
