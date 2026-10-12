@@ -1,4 +1,4 @@
-/* KikoKrypto PWA - Service Worker v4 */
+/* KikoKrypto PWA - Service Worker v7 */
 const CACHE = 'kikokrypto-v7';
 const ASSETS = [
   './',
